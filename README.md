@@ -56,4 +56,45 @@ searchParams.delete("topic");
 searchParams.toString(); // "q=URLUtils.searchParams"
 ```    
 
-> 目前兼容性 ie 完全不支持（edge支持） 其他浏览器支持度不错
+> 目前兼容性 ie 完全不支持（edge支持） 其他浏览器支持度不错     
+
+## 2019-08-15       
+> vue 自定义指令        
+
+众所周知 vue 中 @focus 事件不生效，为了解决这个问题，我们用自定义指令解决     
+[vue文档自定义指令](https://cn.vuejs.org/v2/guide/custom-directive.html#ad)
+```
+// 注册一个全局自定义指令 `v-focus`
+Vue.directive('focus', {
+  // 当被绑定的元素插入到 DOM 中时……
+  inserted: function (el) {
+    // 聚焦元素
+    el.focus()
+  }
+})
+```
+
+```
+// 局部自定义指令
+directives: {
+  focus: {
+    // 指令的定义
+    inserted: function (el) {
+      el.focus()
+    }
+  }
+}
+```
+一个例子    
+```
+自定义 focus 和 blur
+directives: {
+			focus: {
+				inserted: function (el) {
+					let _input = el.querySelector('input')
+					_input.onfocus = function(e) {}
+					_input.onblur = function(e) {}
+				}
+			}
+		},
+```
